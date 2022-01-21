@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+
+    System.out.print("Phase: ");
+    Scanner sp = new Scanner(System.in);
+    String p = sp.nextLine();
+    
+    System.out.print("Database: ");
+    Scanner sd = new Scanner(System.in);
+    String d = sd.nextLine();
+    
+    System.out.print("IP address: ");
+    Scanner sip = new Scanner(System.in);
+    int ip = sip.nextInt();
+     
+    try {
+        File file = new File("C://users//James//Desktop//newcommand.txt");
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line = "", oldtext = "";
+        while((line = reader.readLine()) != null) {
+            oldtext += line + "\r\n";
+        }
+        reader.close();
+       
+        String phase  = oldtext.replaceAll("phase", "" + p);
+        String database = oldtext.replaceAll("db", "" + d);
+        String ips = oldtext.replaceAll("IP", "" + ip);
+        
+        FileWriter writer = new FileWriter("C://users//James//Desktop//newcommand.txt");
+        writer.write(phase + ips + database);
+        writer.close();
+    } catch (IOException e) {
+        // handle e
+    }
+}
